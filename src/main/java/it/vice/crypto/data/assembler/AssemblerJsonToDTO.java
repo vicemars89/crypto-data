@@ -6,6 +6,7 @@ import java.math.RoundingMode;
 import it.vice.crypto.data.model.ResponseApiGold;
 import it.vice.crypto.data.model.ResponseApiJson;
 import it.vice.crypto.data.model.ResponseApiJsonDTO;
+import it.vice.crypto.data.utils.Constants;
 
 public class AssemblerJsonToDTO {
 	
@@ -19,11 +20,11 @@ public class AssemblerJsonToDTO {
 		return responseApiJsonDTO;
 	}
 	
-	public ResponseApiJsonDTO transformerJsonToDTO(String onceTrayValue, ResponseApiGold responseApiJson, boolean once) {
+	public ResponseApiJsonDTO transformerJsonToDTO(ResponseApiGold responseApiJson, boolean once) {
 		ResponseApiJsonDTO responseApiJsonDTO = new ResponseApiJsonDTO();
 		
-		responseApiJsonDTO.setPrice(!once ? responseApiJson.getPrice() : responseApiJson.getPrice().divide(new BigDecimal(onceTrayValue), 2, RoundingMode.HALF_UP));
-		responseApiJsonDTO.setCrypto(responseApiJson.getMetal());
+		responseApiJsonDTO.setPrice(!once ? responseApiJson.getPrice() : responseApiJson.getPrice().divide(new BigDecimal(Constants.ONCE_TRAY), 2, RoundingMode.HALF_UP));
+		responseApiJsonDTO.setCrypto(Constants.ORO);
 		
 		return responseApiJsonDTO;
 	}

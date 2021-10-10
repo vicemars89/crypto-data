@@ -11,7 +11,6 @@ import it.vice.crypto.data.client.impl.CallService;
 import it.vice.crypto.data.model.ResponseApiGold;
 import it.vice.crypto.data.model.ResponseApiJson;
 import it.vice.crypto.data.model.ResponseApiJsonDTO;
-import it.vice.crypto.data.url.InjectUrlsFromApplicationProp;
 import it.vice.crypto.data.utils.CryptoEnum;
 
 @Service
@@ -19,9 +18,6 @@ public class CryptoDataCommand {
 
 	@Autowired
 	private CallService callService;
-	
-	@Autowired
-	private InjectUrlsFromApplicationProp injectUrlsFromApplicationProp;
 	
 	public ResponseApiJsonDTO retrieveLastBTCEURPrice() {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
@@ -96,7 +92,7 @@ public class CryptoDataCommand {
 	public ResponseApiJsonDTO retrieveLastGoldPrice(boolean peso) {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiGold responseApiJson = callService.retrieveLastGoldPrice();
-		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(injectUrlsFromApplicationProp.getOnceTrayValue(), responseApiJson, peso);
+		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, peso);
 		return responseApiJsonDTO;
 	}
 	
