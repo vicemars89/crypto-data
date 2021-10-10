@@ -2,6 +2,8 @@ package it.vice.crypto.data.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -68,8 +70,8 @@ public class ControllerTest {
 	  }
 	  
 	  @GetMapping("/gold-eur")
-	  public ResponseEntity<ResponseApiJsonDTO> getLastGoldPrice(@ApiParam boolean peso) {
-		  ResponseApiJsonDTO result = cryptoDataCommand.retrieveLastGoldPrice(peso);
+	  public ResponseEntity<ResponseApiJsonDTO> getLastGoldPrice(@ApiParam(name = "gram", value = "True: price in gram. False: price in once tray.", required = false) @PathParam("gram") boolean gram) {
+		  ResponseApiJsonDTO result = cryptoDataCommand.retrieveLastGoldPrice(gram);
 		  return ResponseEntity.ok(result);
 	  }
 	  
