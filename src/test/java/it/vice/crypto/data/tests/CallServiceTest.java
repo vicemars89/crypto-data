@@ -1,4 +1,4 @@
-package it.vice.crypto.data.client.impl;
+package it.vice.crypto.data.tests;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,7 +8,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.client.RestTemplate;
 
-import it.vice.crypto.data.url.InjectUrlsFromApplicationProp;
+import it.vice.crypto.data.client.impl.CallService;
+import it.vice.crypto.data.url.InjectionFromApplicationProp;
 
 @ExtendWith(MockitoExtension.class)
 class CallServiceTest {
@@ -20,7 +21,7 @@ class CallServiceTest {
 	private RestTemplate restTemplate;
 	
 	@Mock
-	private InjectUrlsFromApplicationProp injectUrlsFromApplicationProp;
+	private InjectionFromApplicationProp injectUrlsFromApplicationProp;
 	
 	@Test
 	void contextLoads() {

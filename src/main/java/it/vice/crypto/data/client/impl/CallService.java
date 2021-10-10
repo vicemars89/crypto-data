@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import it.vice.crypto.data.model.ResponseApiGold;
 import it.vice.crypto.data.model.ResponseApiJson;
-import it.vice.crypto.data.url.InjectUrlsFromApplicationProp;
+import it.vice.crypto.data.url.InjectionFromApplicationProp;
 
 @Service
 public class CallService {
@@ -22,7 +22,7 @@ public class CallService {
 	private RestTemplate restTemplate;
 	
 	@Autowired
-	private InjectUrlsFromApplicationProp injectUrlsFromApplicationProp;
+	private InjectionFromApplicationProp injectUrlsFromApplicationProp;
 	
 	public ResponseApiJson retrieveLastBTCEURPrice() {
 		ResponseApiJson result = restTemplate.getForObject(injectUrlsFromApplicationProp.getBtceurURL(), ResponseApiJson.class);

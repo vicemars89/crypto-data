@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InjectUrlsFromApplicationProp {
+public class InjectionFromApplicationProp {
 
 	@Value("${url.lastprice.btc.eur}")
 	private String btceurURL;

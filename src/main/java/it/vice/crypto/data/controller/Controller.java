@@ -16,7 +16,7 @@ import it.vice.crypto.data.model.ResponseApiJsonDTO;
 
 @RestController
 @CrossOrigin("*")
-public class ControllerTest {
+public class Controller {
 	
 	@Autowired
 	private CryptoDataCommand cryptoDataCommand;
