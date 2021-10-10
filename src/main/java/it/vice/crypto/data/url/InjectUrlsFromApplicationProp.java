@@ -20,6 +20,12 @@ public class InjectUrlsFromApplicationProp {
 	private String doteurURL;
 	@Value("${url.lastprice.stmx.eur}")
 	private String stmxeurURL;
+	@Value("${url.lastprice.gold.eur}")
+	private String goldeurURL;
+	@Value("${api.key.lastprice.gold}")
+	private String apiKeyGold;
+	@Value("${once.tray.value}")
+	private String onceTrayValue;
 	
 	public String getBtceurURL() {
 		return btceurURL;
@@ -41,6 +47,15 @@ public class InjectUrlsFromApplicationProp {
 	}
 	public String getStmxeurURL() {
 		return stmxeurURL;
+	}
+	public String getGoldeurURL() {
+		return goldeurURL;
+	}
+	public String getApiKeyGold() {
+		return apiKeyGold;
+	}
+	public String getOnceTrayValue() {
+		return onceTrayValue;
 	}
 	
 }

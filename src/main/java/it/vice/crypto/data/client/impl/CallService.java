@@ -5,9 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import it.vice.crypto.data.model.ResponseApiGold;
 import it.vice.crypto.data.model.ResponseApiJson;
 import it.vice.crypto.data.url.InjectUrlsFromApplicationProp;
 
@@ -73,6 +77,19 @@ public class CallService {
 		listResponseApiJson.add(stormx);
 		
 		return listResponseApiJson;
+	}
+	
+	public ResponseApiGold retrieveLastGoldPrice() {
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("x-access-token", injectUrlsFromApplicationProp.getApiKeyGold());
+		headers.set("Content-Type", "application/json");
+
+		HttpEntity entity = new HttpEntity(headers);
+
+		ResponseApiGold response = restTemplate.exchange(injectUrlsFromApplicationProp.getGoldeurURL(), HttpMethod.GET, entity, ResponseApiGold.class).getBody();
+		
+		return response;
 	}
 	
 	@Bean

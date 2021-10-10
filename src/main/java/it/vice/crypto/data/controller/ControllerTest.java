@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiParam;
 import it.vice.crypto.data.command.CryptoDataCommand;
 import it.vice.crypto.data.model.ResponseApiJsonDTO;
 
@@ -63,6 +64,12 @@ public class ControllerTest {
 	  @GetMapping("/every-crypto-eur")
 	  public ResponseEntity<List<ResponseApiJsonDTO>> getLastAllCryptoPrices() {
 		  List<ResponseApiJsonDTO> result = cryptoDataCommand.retrieveAllLastCryptoPrice();
+		  return ResponseEntity.ok(result);
+	  }
+	  
+	  @GetMapping("/gold-eur")
+	  public ResponseEntity<ResponseApiJsonDTO> getLastGoldPrice(@ApiParam boolean peso) {
+		  ResponseApiJsonDTO result = cryptoDataCommand.retrieveLastGoldPrice(peso);
 		  return ResponseEntity.ok(result);
 	  }
 	  
