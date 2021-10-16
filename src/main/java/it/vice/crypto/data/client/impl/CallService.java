@@ -24,6 +24,9 @@ public class CallService {
 	@Autowired
 	private InjectionFromApplicationProp injectUrlsFromApplicationProp;
 	
+	@Autowired
+	private MockService mockService;
+	
 	public ResponseApiJson retrieveLastBTCEURPrice() {
 		ResponseApiJson result = restTemplate.getForObject(injectUrlsFromApplicationProp.getBtceurURL(), ResponseApiJson.class);
 		return result;
@@ -81,14 +84,20 @@ public class CallService {
 	
 	public ResponseApiGold retrieveLastGoldPrice() {
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("x-access-token", injectUrlsFromApplicationProp.getApiKeyGold());
-		headers.set("Content-Type", "application/json");
-
-		HttpEntity entity = new HttpEntity(headers);
-
-		ResponseApiGold response = restTemplate.exchange(injectUrlsFromApplicationProp.getGoldeurURL(), HttpMethod.GET, entity, ResponseApiGold.class).getBody();
+		ResponseApiGold response;
 		
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			headers.set("x-access-token", injectUrlsFromApplicationProp.getApiKeyGold());
+			headers.set("Content-Type", "application/json");
+	
+			HttpEntity entity = new HttpEntity(headers);
+	
+			response = restTemplate.exchange(injectUrlsFromApplicationProp.getGoldeurURL(), HttpMethod.GET, entity, ResponseApiGold.class).getBody();
+			
+		}catch (Exception e) {
+			response = mockService.mockResponse();
+		}
 		return response;
 	}
 	
