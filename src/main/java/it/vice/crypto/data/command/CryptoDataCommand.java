@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import it.vice.crypto.data.assembler.AssemblerJsonToDTO;
 import it.vice.crypto.data.client.impl.CallService;
+import it.vice.crypto.data.entity.CryptoData;
 import it.vice.crypto.data.model.ResponseApiGold;
 import it.vice.crypto.data.model.ResponseApiJson;
 import it.vice.crypto.data.model.ResponseApiJsonDTO;
+import it.vice.crypto.data.repository.CryptoDataRepository;
 import it.vice.crypto.data.utils.CryptoEnum;
 
 @Service
@@ -19,10 +21,14 @@ public class CryptoDataCommand {
 	@Autowired
 	private CallService callService;
 	
+	@Autowired
+	CryptoDataRepository cryptoDataRepository;
+	
 	public ResponseApiJsonDTO retrieveLastBTCEURPrice() {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiJson responseApiJson = callService.retrieveLastBTCEURPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, CryptoEnum.BTC.label);
+		cryptoDataRepository.save(new CryptoData(CryptoEnum.BTC.label, responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
@@ -30,6 +36,7 @@ public class CryptoDataCommand {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiJson responseApiJson = callService.retrieveLastXRPEURPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, CryptoEnum.XRP.label);
+		cryptoDataRepository.save(new CryptoData(CryptoEnum.XRP.label, responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
@@ -37,6 +44,7 @@ public class CryptoDataCommand {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiJson responseApiJson = callService.retrieveLastETHEURPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, CryptoEnum.ETH.label);
+		cryptoDataRepository.save(new CryptoData(CryptoEnum.ETH.label, responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
@@ -44,6 +52,7 @@ public class CryptoDataCommand {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiJson responseApiJson = callService.retrieveLastADAEURPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, CryptoEnum.ADA.label);
+		cryptoDataRepository.save(new CryptoData(CryptoEnum.ADA.label, responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
@@ -51,6 +60,7 @@ public class CryptoDataCommand {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiJson responseApiJson = callService.retrieveLastTRXEURPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, CryptoEnum.TRX.label);
+		cryptoDataRepository.save(new CryptoData(CryptoEnum.TRX.label, responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
@@ -58,6 +68,7 @@ public class CryptoDataCommand {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiJson responseApiJson = callService.retrieveLastDOTEURPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, CryptoEnum.DOT.label);
+		cryptoDataRepository.save(new CryptoData(CryptoEnum.DOT.label, responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
@@ -65,6 +76,7 @@ public class CryptoDataCommand {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiJson responseApiJson = callService.retrieveLastSTMXEURPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, CryptoEnum.STMX.label);
+		cryptoDataRepository.save(new CryptoData(CryptoEnum.STMX.label, responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
@@ -93,6 +105,7 @@ public class CryptoDataCommand {
 		AssemblerJsonToDTO assemblerJsonToDTO = new AssemblerJsonToDTO();
 		ResponseApiGold responseApiJson = callService.retrieveLastGoldPrice();
 		ResponseApiJsonDTO responseApiJsonDTO = assemblerJsonToDTO.transformerJsonToDTO(responseApiJson, peso);
+		cryptoDataRepository.save(new CryptoData("Oro", responseApiJsonDTO.getPrice()));
 		return responseApiJsonDTO;
 	}
 	
