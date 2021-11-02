@@ -20,6 +20,7 @@ import it.vice.crypto.data.model.ResponseApiGold;
 import it.vice.crypto.data.model.ResponseApiJson;
 import it.vice.crypto.data.model.ResponseApiJsonDTO;
 import it.vice.crypto.data.model.Result;
+import it.vice.crypto.data.repository.CryptoDataRepository;
 
 @ExtendWith(MockitoExtension.class)
 class CryptoDataCommandTest {
@@ -44,6 +45,9 @@ class CryptoDataCommandTest {
 	
 	@Mock
 	Allowanace allowanace;
+	
+	@Mock
+	CryptoDataRepository cryptoDataRepository;
     
 	@Ignore
 	public void retrieveLastBTCEURPriceTest() {
